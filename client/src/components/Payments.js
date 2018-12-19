@@ -20,8 +20,4 @@ class Payments extends Component {
     }
 }
 
-function mapSateToProps({ auth }) {
-    return { auth };
-}
-
-export default connect(mapSateToProps, actions)(Payments);
+export default connect(null, actions)(Payments);

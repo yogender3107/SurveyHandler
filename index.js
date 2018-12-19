@@ -6,9 +6,8 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
-const authRoutes = require('./routes/authRoutes');
-const billingRoutes = require('./routes/billingRoutes');
 
 mongoose.connect(keys.mongoURI);
 
@@ -22,8 +21,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 
-authRoutes(app);
-billingRoutes(app);
+require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

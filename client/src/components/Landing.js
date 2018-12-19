@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Header extends Component {
+class Landing extends Component {
+
+    componentDidUpdate() {
+        if (this.props.auth)
+            this.props.history.push('/surveys');
+    }
 
     render() {
         return (
@@ -13,8 +18,8 @@ class Header extends Component {
     }
 }
 
-function mapSateToProps({ auth }) {
+function mapStateToProps({ auth }) {
     return { auth };
 }
 
-export default connect(mapSateToProps)(Header);
+export default connect(mapStateToProps)(Landing);
